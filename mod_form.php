@@ -174,9 +174,9 @@ class mod_subcourse_mod_form extends moodleform_mod {
 
         $mform = $this->_form;
 
-        $mform->addElement('advcheckbox', 'completioncourse', get_string('completioncourse', 'mod_subcourse'),
+        $mform->addElement('advcheckbox', $this->get_suffixed_name('completioncourse'), get_string('completioncourse', 'mod_subcourse'),
             get_string('completioncourse_text', 'mod_subcourse'));
-        $mform->addHelpButton('completioncourse', 'completioncourse', 'mod_subcourse');
+        $mform->addHelpButton($this->get_suffixed_name('completioncourse'), 'completioncourse', 'mod_subcourse');
 
         return ['completioncourse'];
     }
@@ -188,6 +188,9 @@ class mod_subcourse_mod_form extends moodleform_mod {
      * @return bool True if one or more rules is enabled, false if none are.
      */
     public function completion_rule_enabled($data) {
-        return (!empty($data['completioncourse']));
+        return (!empty($data[$this->get_suffixed_name('completioncourse')]));
+    }
+    protected function get_suffixed_name(string $fieldname): string {
+        return $fieldname . $this->get_suffix();
     }
 }
