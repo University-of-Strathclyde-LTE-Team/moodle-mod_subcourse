@@ -178,7 +178,7 @@ class mod_subcourse_mod_form extends moodleform_mod {
             get_string('completioncourse_text', 'mod_subcourse'));
         $mform->addHelpButton($this->get_suffixed_name('completioncourse'), 'completioncourse', 'mod_subcourse');
 
-        return ['completioncourse'];
+        return [$this->get_suffixed_name('completioncourse')];
     }
 
     /**
